@@ -1,0 +1,24 @@
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "1CB-ti-CIV"; */
+"1CB-ti-CIV.normalTitle" = "Login";
+
+/* Class = "UILabel"; text = "ようこそ"; ObjectID = "JCh-Uf-tSg"; */
+"JCh-Uf-tSg.text" = "ようこそ";
+
+/* Class = "UIButton"; normalTitle = "Google"; ObjectID = "Pea-SG-cDm"; */
+"Pea-SG-cDm.normalTitle" = "Google";
+
+/* Class = "UIButton"; normalTitle = "ログイン"; ObjectID = "Pv6-Qb-P6C"; */
+"Pv6-Qb-P6C.normalTitle" = "ログイン";
+
+/* Class = "UINavigationItem"; title = "Dash Island"; ObjectID = "SdG-pM-hab"; */
+"SdG-pM-hab.title" = "Dash Island";
+
+/* Class = "UILabel"; text = "password"; ObjectID = "VnP-Kc-oAm"; */
+"VnP-Kc-oAm.text" = "password";
+
+/* Class = "UILabel"; text = "nameさん"; ObjectID = "aea-SP-pdA"; */
+"aea-SP-pdA.text" = "nameさん";
+
+/* Class = "UILabel"; text = "username"; ObjectID = "nMn-dt-s2e"; */
+"nMn-dt-s2e.text" = "username";

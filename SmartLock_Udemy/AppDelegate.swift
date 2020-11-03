@@ -17,7 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var email = ""
     var photoURL = ""
     var name = ""
+    
+    var window: UIWindow?
+    //mainVCに画面遷移するため　方法2
+//    var CurrentVC = UIApplication.shared.keyWindow?.rootViewController
 
+//    var HomeViewController: ViewController!
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
@@ -42,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 //      -> Bool {
 //      return GIDSignIn.sharedInstance().handle(url)
 //    }
-//    
+//
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
       // ...
         if let error = error {
@@ -85,9 +91,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 print(self.id)
                 print(user.displayName)
                 
+//                var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//                let viewVC = self.storyboard?.instantiateViewController(identifier: "viewVC") as! ViewController
                 
-//                let homeVC = self.storyboard?.instantiateViewController(identifier: "homeVC") as! ViewController
+                //mainVCに遷移
+//                ViewController().getTopMostViewController()
+//                ViewController().ChangeVC()
                 
+                //画面遷移させたい部分に以下の処理を記述
+                //　windowを生成
+//                self.window = UIWindow(frame: UIScreen.main.bounds)
+//                //　Storyboardを指定
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                // Viewcontrollerを指定
+//                let initialViewController = storyboard.instantiateViewController(withIdentifier: "LockVC")
+//                // rootViewControllerに入れる
+//                self.window?.rootViewController = initialViewController
+//                // 表示
+//                self.window?.makeKeyAndVisible()
+                
+                //AppDelegateでのLockVCへの画面遷移は断念（HomeViewControllerでする）
+            
+//                //　windowを生成
+//                self.window = UIWindow(frame: UIScreen.main.bounds)
+//                //　Storyboardを指定
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                //storyboardIDを設定
+//                let lockVC = storyboard.instantiateViewController(withIdentifier: "LockVC") as! LockViewController
+//    //            let lockVC = self.storyboard?.instantiateInitialViewController()
+//                //let lockVC = self.storyboard?.instantiateViewController(identifier: "lockVC") as! ViewController
+//                //viewVCに画面遷移する
+//                //self.navigationController?.pushViewController(lockVC, animated: true)
+//                //self.present(lockVC, animated: true, completion: nil)
+//                // rootViewControllerに入れる
+//                self.window?.rootViewController = lockVC
+//                // 表示
+//                self.window?.makeKeyAndVisible()
+                
+//                //　Storyboardを指定
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                //storyboardIDを設定
+//                let lockVC = storyboard.instantiateViewController(identifier: "LockVC")
+//                //viewVCに画面遷移する
+//                self.pushViewController(lockVC, animated: true)
+            
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let initialViewController = storyboard.instantiateViewController(withIdentifier: "LockVC")
             }
         }
         
