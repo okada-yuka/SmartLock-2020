@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>883047481482-vf7q2rd0o4djttmljd9fn235dg8euh23.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.883047481482-vf7q2rd0o4djttmljd9fn235dg8euh23</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDqfnX8pT0NFoiCrIyzdqlrcUQ9GTL929I</string>
+	<key>GCM_SENDER_ID</key>
+	<string>883047481482</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.yukaokada.SmartLock-Udemy</string>
+	<key>PROJECT_ID</key>
+	<string>smartlock-kc214</string>
+	<key>STORAGE_BUCKET</key>
+	<string>smartlock-kc214.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:883047481482:ios:ccb47e0d55c72f0b952d73</string>
+	<key>DATABASE_URL</key>
+	<string>https://smartlock-kc214.firebaseio.com</string>
+</dict>
+</plist>
