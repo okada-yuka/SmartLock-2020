@@ -88,6 +88,8 @@ class HomeViewController: UIViewController{
             let lockVC = self.storyboard?.instantiateViewController(withIdentifier: "LockVC") as! LockViewController
 //            let lockVC = self.storyboard?.instantiateInitialViewController()
             //let lockVC = self.storyboard?.instantiateViewController(identifier: "lockVC") as! ViewController
+            //値を渡す
+            lockVC.name = Auth.auth().currentUser?.displayName ?? "[displayName]"
             //viewVCに画面遷移する
             //self.navigationController?.pushViewController(lockVC, animated: true)
             self.present(lockVC, animated: true, completion: nil)

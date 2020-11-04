@@ -9,11 +9,15 @@ import UIKit
 
 class LockViewController: UIViewController {
 
+    @IBOutlet weak var nameLab: UILabel!
+    
+    var name = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         print("LockViewに入りました")
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor.red
+        nameLab.text = name
     }
     
 
