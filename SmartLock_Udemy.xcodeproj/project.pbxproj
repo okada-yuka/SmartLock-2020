@@ -16,6 +16,7 @@
 		C11F372A25507169003B6778 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11F372925507169003B6778 /* HomeViewController.swift */; };
 		C11F373D25510FDE003B6778 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C11F373C25510FDE003B6778 /* GoogleService-Info.plist */; };
 		C13B4A202551CBA9000D866B /* LockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13B4A1F2551CBA9000D866B /* LockViewController.swift */; };
+		C13B4A232552E7D1000D866B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13B4A222552E7D1000D866B /* TestViewController.swift */; };
 		E72DF54FD8AFDB1D44C75D59 /* Pods_SmartLock_Udemy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578557221135FCFBC31CB861 /* Pods_SmartLock_Udemy.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		C11F373C25510FDE003B6778 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C13B4A182551C77A000D866B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		C13B4A1F2551CBA9000D866B /* LockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockViewController.swift; sourceTree = "<group>"; };
+		C13B4A222552E7D1000D866B /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		C6949F930A2D920B38913902 /* Pods-SmartLock_Udemy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartLock_Udemy.debug.xcconfig"; path = "Target Support Files/Pods-SmartLock_Udemy/Pods-SmartLock_Udemy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +107,7 @@
 				C11F3724255063E4003B6778 /* LoginViewController.swift */,
 				C11F372925507169003B6778 /* HomeViewController.swift */,
 				C13B4A1F2551CBA9000D866B /* LockViewController.swift */,
+				C13B4A222552E7D1000D866B /* TestViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				C13B4A202551CBA9000D866B /* LockViewController.swift in Sources */,
 				C11E8894254E675500C4CEEB /* AppDelegate.swift in Sources */,
 				C11E8896254E675500C4CEEB /* SceneDelegate.swift in Sources */,
+				C13B4A232552E7D1000D866B /* TestViewController.swift in Sources */,
 				C11F372A25507169003B6778 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,10 +15,14 @@ class HomeViewController: UIViewController{
     @IBOutlet weak var nameLab: UILabel!
     @IBOutlet weak var iconWebView: UIWebView!
     @IBOutlet weak var nextBtn: UIButton!
+    
+    @IBOutlet weak var keyBtn: UIButton!
     var loginFlag = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.navigationController?.navigationBar.isHidden = true
+//        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         
         // Do any additional setup after loading the view.
         
@@ -46,8 +50,37 @@ class HomeViewController: UIViewController{
 
     }
     
+    func loginCheck() {
+        print("loginCheck")
+        //グローバルにしたら良さそう
+        var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
+        if appDelegate.id == ""{
+            print("ログインできてへん")
+        }else{
+            print("ログインでけた")
+            //これで画面遷移できるはずができない．．とりあえずボタンでの遷移
+            //performSegue(withIdentifier: "login", sender: nil)
+                    
+        }
 
-    
+//        let lockVC = storyboard?.instantiateViewController(withIdentifier: "LockVC") as! LockViewController
+//        lockVC.performSegue(withIdentifier: "toLockVC", sender: nil)
+        
+        //これを使う予定だったけど調整中
+//        let lockVC = storyboard?.instantiateViewController(withIdentifier: "lock") as! LockViewController
+//        navigationController?.pushViewController(lockVC, animated: true)
+        
+        
+    }
+
+    func gotoKey(){
+        print("gotoKeyが呼ばれた")
+        let lockVC = self.storyboard?.instantiateViewController(withIdentifier: "lockVC") as! LockViewController
+        self.present(lockVC, animated: true, completion: nil)
+    }
+    @IBAction func keyBtn(_ sender: Any) {
+        gotoKey()
+    }
     @IBAction func nextBtn(_ sender: Any) {
         
         print("入った")
@@ -60,11 +93,13 @@ class HomeViewController: UIViewController{
             //        print(appDelegate.email)
                     
             //        print(Auth.auth().currentUser?.photoURL)
-                    //Googleのログインメニューを表示する
-                    GIDSignIn.sharedInstance()?.presentingViewController = self
-                    GIDSignIn.sharedInstance().signIn()
-                    
-                    print(Auth.auth().currentUser?.uid)
+            //Googleのログインメニューを表示する
+            GIDSignIn.sharedInstance()?.presentingViewController = self
+            GIDSignIn.sharedInstance().signIn()
+    
+            var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
+            print(appDelegate.id)
+            print(appDelegate.name)
                     
             //        //ログイン処理
             //        //FirebaseAuthに持っていく
@@ -79,20 +114,23 @@ class HomeViewController: UIViewController{
             nextBtn.setTitle("ログアウト", for: .normal)
             
             //名前とアイコンを表示してKeyViewに遷移する
-            nameLab.text = Auth.auth().currentUser?.displayName
-            print(Auth.auth().currentUser?.displayName)
+            nameLab.text = appDelegate.name
+            //print(Auth.auth().currentUser?.displayName)
             
             //11/4：ロード終了後など，良いタイミングに変更できそうならする
             //画面遷移
+            //これを使っていたけど，とりあえずボタンでの遷移に変更しようと思う
             //storyboardIDを設定
-            let lockVC = self.storyboard?.instantiateViewController(withIdentifier: "LockVC") as! LockViewController
+            //これと....
+//            let lockVC = self.storyboard?.instantiateViewController(withIdentifier: "lockVC") as! LockViewController
 //            let lockVC = self.storyboard?.instantiateInitialViewController()
             //let lockVC = self.storyboard?.instantiateViewController(identifier: "lockVC") as! ViewController
             //値を渡す
-            lockVC.name = Auth.auth().currentUser?.displayName ?? "[displayName]"
+            //lockVC.name = Auth.auth().currentUser?.displayName ?? "[displayName]"
             //viewVCに画面遷移する
             //self.navigationController?.pushViewController(lockVC, animated: true)
-            self.present(lockVC, animated: true, completion: nil)
+            //....これ
+//            self.present(lockVC, animated: true, completion: nil)
             
         }else{
             print("ログアウトします")

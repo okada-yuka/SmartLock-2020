@@ -11,13 +11,17 @@ class LockViewController: UIViewController {
 
     @IBOutlet weak var nameLab: UILabel!
     
-    var name = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         print("LockViewに入りました")
-        // Do any additional setup after loading the view.
-        view.backgroundColor = UIColor.red
+        
+        var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
+        var name = appDelegate.name
         nameLab.text = name
+        
+//        //スワイプで前の画面に戻る　できない
+//        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        
     }
     
 

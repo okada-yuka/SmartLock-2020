@@ -16,15 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pv6-Qb-P6C">
-                                <rect key="frame" x="223" y="637" width="122" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="ログイン"/>
-                                <connections>
-                                    <action selector="nextBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Syg-LT-dqE"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="7Tl-45-7v2">
                                 <rect key="frame" x="46" y="104" width="299" height="192"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -48,6 +39,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVF-d3-iR4">
+                                <rect key="frame" x="238" y="644" width="83" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.82352941180000006" green="0.37647058820000001" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Key画面へ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="keyBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RwI-Uc-BxL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pv6-Qb-P6C">
+                                <rect key="frame" x="63" y="634" width="122" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="ログイン"/>
+                                <connections>
+                                    <action selector="nextBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Syg-LT-dqE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.76852434869999997" green="0.89024895429999995" blue="0.99987846609999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -55,26 +66,42 @@
                     <navigationItem key="navigationItem" title="Dash Island" id="SdG-pM-hab"/>
                     <connections>
                         <outlet property="iconWebView" destination="RJI-EC-ZQd" id="679-Eb-4Ii"/>
+                        <outlet property="keyBtn" destination="PVF-d3-iR4" id="Uwa-Zg-PXT"/>
                         <outlet property="nameLab" destination="aea-SP-pdA" id="trP-H6-1jC"/>
                         <outlet property="nextBtn" destination="Pv6-Qb-P6C" id="OiK-3I-COL"/>
-                        <segue destination="nfK-iQ-EnV" kind="presentation" id="1Q1-on-BbW"/>
-                        <segue destination="q7G-a4-gbi" kind="show" id="aPu-UJ-Gy3"/>
+                        <segue destination="q7G-a4-gbi" kind="show" identifier="toLockVC" id="U1c-d8-laQ"/>
+                        <segue destination="nfK-iQ-EnV" kind="show" identifier="login" id="7Pp-g4-KYn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2176.9230769230767" y="123.69668246445497"/>
         </scene>
+        <!--Test View Controller-->
+        <scene sceneID="tRV-Xk-7p3">
+            <objects>
+                <viewController storyboardIdentifier="testVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bcp-ph-TrF" customClass="TestViewController" customModule="SmartLock_Udemy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XPi-nh-bMy">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="FGG-hd-Ik3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rnl-Gx-pLn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1832" y="882"/>
+        </scene>
         <!--Lock View Controller-->
         <scene sceneID="9On-nE-p8t">
             <objects>
-                <viewController storyboardIdentifier="LockVC" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q7G-a4-gbi" customClass="LockViewController" customModule="SmartLock_Udemy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="lockVC" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q7G-a4-gbi" customClass="LockViewController" customModule="SmartLock_Udemy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mLh-Mh-wFX">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yM-Hp-Bw0">
-                                <rect key="frame" x="174" y="256" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="こんにちは" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yM-Hp-Bw0">
+                                <rect key="frame" x="54" y="202" width="263" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -86,19 +113,19 @@
                     </view>
                     <navigationItem key="navigationItem" id="iFw-86-cb3"/>
                     <connections>
-                        <outlet property="nameLab" destination="2yM-Hp-Bw0" id="YhD-Yk-e2L"/>
+                        <outlet property="nameLab" destination="2yM-Hp-Bw0" id="nz1-ye-fDs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVs-xp-kSp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3848" y="296"/>
+            <point key="canvasLocation" x="2589.2307692307691" y="861.61137440758284"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="k9b-m1-J1f">
             <objects>
                 <viewController id="nfK-iQ-EnV" customClass="LoginViewController" customModule="SmartLock_Udemy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cXb-lH-BzC">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Heidi" translatesAutoresizingMaskIntoConstraints="NO" id="x9n-bU-vKL">
@@ -150,7 +177,6 @@
                                             </state>
                                             <connections>
                                                 <action selector="loginBtn:" destination="nfK-iQ-EnV" eventType="touchUpInside" id="HPB-3Z-LGX"/>
-                                                <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="acp-sc-MYG"/>
                                             </connections>
                                         </button>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="r6j-G1-2Hc">
@@ -171,6 +197,7 @@
                         <viewLayoutGuide key="safeArea" id="SpQ-bB-7UG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="6cV-mg-w86"/>
                     <connections>
                         <outlet property="indicator" destination="r6j-G1-2Hc" id="7xH-Rc-GBp"/>
                         <outlet property="passwordTextField" destination="5NX-Rv-RhO" id="dre-mG-Rsh"/>
@@ -201,9 +228,6 @@
             <point key="canvasLocation" x="1381.5384615384614" y="123.69668246445497"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="acp-sc-MYG"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="Heidi" width="3024" height="4032"/>
         <image name="icon" width="960" height="883"/>

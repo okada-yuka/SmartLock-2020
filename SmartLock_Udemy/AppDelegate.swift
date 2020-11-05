@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var name = ""
     
     var window: UIWindow?
+    
     //mainVCに画面遷移するため　方法2
 //    var CurrentVC = UIApplication.shared.keyWindow?.rootViewController
 
@@ -54,7 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         if let error = error {
             // ...
             return
-      }
+            
+        }
 
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
@@ -71,79 +73,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             }
             
             
-//            let user = Auth.auth().currentUser
-//            print(user.getDisplayName)
             
             let user = Auth.auth().currentUser
             if let user = user {
                 self.id = user.uid
                 self.name = user.displayName ?? "[DispayName]"
                 self.email = user.email ?? "[EMail]"
-//                self.photoURL = user.photoURL
+        //                self.photoURL = user.photoURL
                 var multiFactorString = "MultiFactor: "
                 for info in user.multiFactor.enrolledFactors {
                     multiFactorString += info.displayName ?? "[DispayName]"
                     multiFactorString += " "
                 }
-                
-                
-                print()
-                print(self.id)
-                print(user.displayName)
-                
-//                var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
-//                let viewVC = self.storyboard?.instantiateViewController(identifier: "viewVC") as! ViewController
-                
-                //mainVCに遷移
-//                ViewController().getTopMostViewController()
-//                ViewController().ChangeVC()
-                
-                //画面遷移させたい部分に以下の処理を記述
-                //　windowを生成
-//                self.window = UIWindow(frame: UIScreen.main.bounds)
-//                //　Storyboardを指定
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                // Viewcontrollerを指定
-//                let initialViewController = storyboard.instantiateViewController(withIdentifier: "LockVC")
-//                // rootViewControllerに入れる
-//                self.window?.rootViewController = initialViewController
-//                // 表示
-//                self.window?.makeKeyAndVisible()
-                
-                //AppDelegateでのLockVCへの画面遷移は断念（HomeViewControllerでする）
-            
-//                //　windowを生成
-//                self.window = UIWindow(frame: UIScreen.main.bounds)
-//                //　Storyboardを指定
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                //storyboardIDを設定
-//                let lockVC = storyboard.instantiateViewController(withIdentifier: "LockVC") as! LockViewController
-//    //            let lockVC = self.storyboard?.instantiateInitialViewController()
-//                //let lockVC = self.storyboard?.instantiateViewController(identifier: "lockVC") as! ViewController
-//                //viewVCに画面遷移する
-//                //self.navigationController?.pushViewController(lockVC, animated: true)
-//                //self.present(lockVC, animated: true, completion: nil)
-//                // rootViewControllerに入れる
-//                self.window?.rootViewController = lockVC
-//                // 表示
-//                self.window?.makeKeyAndVisible()
-                
-//                //　Storyboardを指定
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                //storyboardIDを設定
-//                let lockVC = storyboard.instantiateViewController(identifier: "LockVC")
-//                //viewVCに画面遷移する
-//                self.pushViewController(lockVC, animated: true)
-            
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let initialViewController = storyboard.instantiateViewController(withIdentifier: "LockVC")
             }
+            
+            print(self.name)
+            //ログイン後にログインできたかを確認
+            HomeViewController().loginCheck()
+            //HomeViewController().gotoKey()
         }
-        
+
         
     }
-
-//    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-//    }
 }
 
