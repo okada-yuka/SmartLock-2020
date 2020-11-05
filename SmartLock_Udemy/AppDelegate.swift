@@ -71,8 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 print(error)
                 return
             }
-            
-            
+            //HomeViewController().stopIndicator()
+            //loginボタンの表示変更もここで関数呼び出して行うべき
             
             let user = Auth.auth().currentUser
             if let user = user {

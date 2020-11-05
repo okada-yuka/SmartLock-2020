@@ -12,41 +12,44 @@ import FirebaseAuth
 
 class HomeViewController: UIViewController{
 
-    @IBOutlet weak var nameLab: UILabel!
     @IBOutlet weak var iconWebView: UIWebView!
+    @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
-    @IBOutlet weak var keyBtn: UIButton!
     var loginFlag = true
+    let d_blue = UIColor(red: 58, green: 98, blue: 157, alpha: 1.0)
+    let l_blue = UIColor(red: 101, green: 128, blue: 164, alpha: 1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationController?.navigationBar.isHidden = true
-//        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-        
-        // Do any additional setup after loading the view.
         
         var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
+        
+        //押せないようにする（色を薄くしておく）
+        //nextBtn.backgroundColor = l_blue
+        nextBtn.isEnabled = false
+        
+        let image = UIImage(named: "gLogin")
+        self.loginBtn.setImage(image, for: .normal)
+        
+        indicator.isHidden = true
         
         //appDelegate.idは空だけどAuth.auth().currentUser?.uidは前のが残っている
         //ログアウト実装時にどうするか検討
         if appDelegate.id == ""{
             print("ログインしてください")
-            nextBtn.setTitle("ログイン", for: .normal)
+            let image = UIImage(named: "gLogin")
+            self.loginBtn.setImage(image, for: .normal)
+            //loginBtn.setTitle("ログイン", for: .normal)
             loginFlag = false
         }else{
             print("ログイン済みです")
-            nextBtn.setTitle("ログアウト", for: .normal)
+//            let image = UIImage(named: "logout")
+//            self.loginBtn.setImage(image, for: .normal)
+            //loginBtn.setTitle("ログアウト", for: .normal)
             //KeyViewに遷移する
         }
-        
-        print("viewDidLoad")
-//        print(appDelegate.count)
-//        print(appDelegate.id)
-//        print(appDelegate.email)
-//        print(appDelegate.photoURL)
-//        print(appDelegate.displayName)
-        
 
     }
     
@@ -63,92 +66,64 @@ class HomeViewController: UIViewController{
                     
         }
 
-//        let lockVC = storyboard?.instantiateViewController(withIdentifier: "LockVC") as! LockViewController
-//        lockVC.performSegue(withIdentifier: "toLockVC", sender: nil)
-        
-        //これを使う予定だったけど調整中
-//        let lockVC = storyboard?.instantiateViewController(withIdentifier: "lock") as! LockViewController
-//        navigationController?.pushViewController(lockVC, animated: true)
+
         
         
     }
 
+    func movingIndicator() {
+        indicator.isHidden = false
+        indicator.startAnimating()
+    }
+    
+    @objc func stopIndicator() {
+        print("indicatorとめます")
+        indicator.isHidden = true
+        indicator.stopAnimating()
+    }
     func gotoKey(){
         print("gotoKeyが呼ばれた")
+        
         let lockVC = self.storyboard?.instantiateViewController(withIdentifier: "lockVC") as! LockViewController
         self.present(lockVC, animated: true, completion: nil)
     }
-    @IBAction func keyBtn(_ sender: Any) {
-        gotoKey()
-    }
+    
     @IBAction func nextBtn(_ sender: Any) {
+        //TabBarなのでlockVCではなく，TabViewControllerに遷移（storyboardで記述した）
+        //gotoKey()
+    }
+    
+    @IBAction func loginBtn(_ sender: Any) {
         
         print("入った")
+        indicator.isHidden = false
+        indicator.isAnimating
         
-        //ログイン前の場合
-        if loginFlag == false{
-            let firebaseAuth = Auth.auth()
-            //        var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
-            //        print(appDelegate.name)
-            //        print(appDelegate.email)
-                    
-            //        print(Auth.auth().currentUser?.photoURL)
-            //Googleのログインメニューを表示する
-            GIDSignIn.sharedInstance()?.presentingViewController = self
-            GIDSignIn.sharedInstance().signIn()
-    
-            var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
-            print(appDelegate.id)
-            print(appDelegate.name)
-                    
-            //        //ログイン処理
-            //        //FirebaseAuthに持っていく
-            //        Auth.auth().signIn(with: credential!) { (result, error) in
-            //            if let error = error{
-            //                return
-            //            }
-            //            print("サインイン")
-            //        }
-            loginFlag = true
-            //場所変えたい
-            nextBtn.setTitle("ログアウト", for: .normal)
+        //押せるようにする
+        nextBtn.isEnabled = true
+        nextBtn.backgroundColor = #colorLiteral(red: 0.2291080508, green: 0.3835181924, blue: 0.6173064721, alpha: 1)
+
+        let firebaseAuth = Auth.auth()
+        //Googleのログインメニューを表示する
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance().signIn()
+        
+        //7秒でインディケータを消すようにしている．．無理やり
+        Timer.scheduledTimer(timeInterval: 7, target: self, selector: #selector(HomeViewController.stopIndicator), userInfo: nil, repeats: false)
+        
+        loginFlag = true
+        //場所変えたい
+        var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//            let image = UIImage(named: "logout")
+//            self.loginBtn.setImage(image, for: .normal)
+        //loginBtn.setTitle("ログアウト", for: .normal)
+        //self.loginBtn.setTitleColor(UIColor.red, for: .normal)
+        //名前とアイコンを表示してKeyViewに遷移する
+        //nameLab.text = appDelegate.name
+
             
-            //名前とアイコンを表示してKeyViewに遷移する
-            nameLab.text = appDelegate.name
-            //print(Auth.auth().currentUser?.displayName)
-            
-            //11/4：ロード終了後など，良いタイミングに変更できそうならする
-            //画面遷移
-            //これを使っていたけど，とりあえずボタンでの遷移に変更しようと思う
-            //storyboardIDを設定
-            //これと....
-//            let lockVC = self.storyboard?.instantiateViewController(withIdentifier: "lockVC") as! LockViewController
-//            let lockVC = self.storyboard?.instantiateInitialViewController()
-            //let lockVC = self.storyboard?.instantiateViewController(identifier: "lockVC") as! ViewController
-            //値を渡す
-            //lockVC.name = Auth.auth().currentUser?.displayName ?? "[displayName]"
-            //viewVCに画面遷移する
-            //self.navigationController?.pushViewController(lockVC, animated: true)
-            //....これ
-//            self.present(lockVC, animated: true, completion: nil)
-            
-        }else{
-            print("ログアウトします")
-            //ログイン済みの場合
-            let firebaseAuth = Auth.auth()
-            do {
-              try firebaseAuth.signOut()
-            } catch let signOutError as NSError {
-              print ("Error signing out: %@", signOutError)
-            }
-            
-            //名前とアイコンを空にする
-            nameLab.text = ""
-            
-            nextBtn.setTitle("ログイン", for: .normal)
-            print("ログインしてください")
-            loginFlag = false
-        }
+        
+
         
 
         

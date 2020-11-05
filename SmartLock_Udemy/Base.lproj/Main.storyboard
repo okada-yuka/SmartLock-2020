@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c1M-75-Zq4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
@@ -11,13 +11,13 @@
         <!--Dash Island-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="homeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="HomeViewController" customModule="SmartLock_Udemy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeVC" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="HomeViewController" customModule="SmartLock_Udemy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="7Tl-45-7v2">
-                                <rect key="frame" x="46" y="104" width="299" height="192"/>
+                                <rect key="frame" x="46" y="135" width="299" height="192"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RJI-EC-ZQd">
@@ -25,57 +25,60 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ようこそ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCh-Uf-tSg">
-                                <rect key="frame" x="89" y="304" width="70" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="nameさん" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aea-SP-pdA">
-                                <rect key="frame" x="174" y="354" width="200" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVF-d3-iR4">
-                                <rect key="frame" x="238" y="644" width="83" height="49"/>
+                                <rect key="frame" x="64" y="655" width="263" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.82352941180000006" green="0.37647058820000001" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Key画面へ">
+                                <color key="backgroundColor" red="0.22910805079999999" green="0.38351819240000001" blue="0.6173064721" alpha="0.73581977739726023" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="はじめる">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="keyBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RwI-Uc-BxL"/>
+                                    <action selector="nextBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ElX-t1-z7C"/>
+                                    <segue destination="aa7-56-THc" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="BhP-wf-wF6"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pv6-Qb-P6C">
-                                <rect key="frame" x="63" y="634" width="122" height="51"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pv6-Qb-P6C">
+                                <rect key="frame" x="64" y="588" width="263" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="ログイン"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="google-login-button">
+                                    <color key="titleShadowColor" red="0.22910805078458268" green="0.38351819243816826" blue="0.61730647208121825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="nextBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Syg-LT-dqE"/>
+                                    <action selector="loginBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZZ9-SZ-LG8"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="- Dash Islandへようこそ -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLt-2g-hJu">
+                                <rect key="frame" x="0.0" y="358" width="390" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" red="0.22910805079999999" green="0.38351819240000001" blue="0.6173064721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="vqY-zC-Mmo">
+                                <rect key="frame" x="172" y="462" width="47" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.76852434869999997" green="0.89024895429999995" blue="0.99987846609999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Wbd-GH-xbM"/>
                     <navigationItem key="navigationItem" title="Dash Island" id="SdG-pM-hab"/>
                     <connections>
                         <outlet property="iconWebView" destination="RJI-EC-ZQd" id="679-Eb-4Ii"/>
-                        <outlet property="keyBtn" destination="PVF-d3-iR4" id="Uwa-Zg-PXT"/>
-                        <outlet property="nameLab" destination="aea-SP-pdA" id="trP-H6-1jC"/>
-                        <outlet property="nextBtn" destination="Pv6-Qb-P6C" id="OiK-3I-COL"/>
-                        <segue destination="q7G-a4-gbi" kind="show" identifier="toLockVC" id="U1c-d8-laQ"/>
+                        <outlet property="indicator" destination="vqY-zC-Mmo" id="pmY-xe-dSO"/>
+                        <outlet property="loginBtn" destination="Pv6-Qb-P6C" id="Vzg-Ep-0gu"/>
+                        <outlet property="nextBtn" destination="PVF-d3-iR4" id="roT-lf-4iv"/>
+                        <segue destination="aa7-56-THc" kind="presentation" identifier="toLockVC" modalPresentationStyle="fullScreen" modalTransitionStyle="partialCurl" id="U1c-d8-laQ"/>
                         <segue destination="nfK-iQ-EnV" kind="show" identifier="login" id="7Pp-g4-KYn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2176.9230769230767" y="123.69668246445497"/>
+            <point key="canvasLocation" x="3106.1538461538462" y="123.69668246445497"/>
         </scene>
         <!--Test View Controller-->
         <scene sceneID="tRV-Xk-7p3">
@@ -93,39 +96,52 @@
             <point key="canvasLocation" x="1832" y="882"/>
         </scene>
         <!--Lock View Controller-->
-        <scene sceneID="9On-nE-p8t">
+        <scene sceneID="DYk-rm-ZSe">
             <objects>
-                <viewController storyboardIdentifier="lockVC" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q7G-a4-gbi" customClass="LockViewController" customModule="SmartLock_Udemy" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mLh-Mh-wFX">
+                <viewController storyboardIdentifier="lockVC" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fBg-Mc-Nuz" customClass="LockViewController" customModule="SmartLock_Udemy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9ZM-c6-YCn">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="こんにちは" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yM-Hp-Bw0">
-                                <rect key="frame" x="54" y="202" width="263" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="こんにちは" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSl-W0-zKj">
+                                <rect key="frame" x="43" y="85" width="217" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvb-lD-dme">
+                                <rect key="frame" x="133" y="312" width="124" height="116"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Lock">
+                                    <color key="titleColor" red="0.22910805078458268" green="0.38351819243816826" blue="0.61730647208121825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="lockBtn:" destination="fBg-Mc-Nuz" eventType="touchUpInside" id="U3t-ti-T0p"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="Qxc-HY-bRh"/>
-                        <color key="backgroundColor" systemColor="systemGray3Color"/>
+                        <viewLayoutGuide key="safeArea" id="fBe-5Z-t3y"/>
+                        <color key="backgroundColor" red="0.22910805078458268" green="0.38351819243816826" blue="0.61730647208121825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="iFw-86-cb3"/>
+                    <tabBarItem key="tabBarItem" title="" image="house.fill" catalog="system" id="6ib-wh-8Yv"/>
                     <connections>
-                        <outlet property="nameLab" destination="2yM-Hp-Bw0" id="nz1-ye-fDs"/>
+                        <outlet property="btnLock" destination="yvb-lD-dme" id="Nrh-ce-C6a"/>
+                        <outlet property="nameLab" destination="lSl-W0-zKj" id="9o5-hF-4hF"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hVs-xp-kSp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HX8-wZ-zPf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2589.2307692307691" y="861.61137440758284"/>
+            <point key="canvasLocation" x="1932.3076923076922" y="1615.8767772511846"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="k9b-m1-J1f">
             <objects>
                 <viewController id="nfK-iQ-EnV" customClass="LoginViewController" customModule="SmartLock_Udemy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cXb-lH-BzC">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Heidi" translatesAutoresizingMaskIntoConstraints="NO" id="x9n-bU-vKL">
@@ -207,35 +223,74 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDj-Pj-tKt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3194" y="117"/>
+            <point key="canvasLocation" x="4123.0769230769229" y="116.58767772511848"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="J5H-Yy-UJZ">
+        <!--Tab Bar Controller-->
+        <scene sceneID="4iP-bc-Ijn">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c1M-75-Zq4" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HLw-1M-9Db" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tabBarController storyboardIdentifier="tabVC" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aa7-56-THc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fg9-Kl-9CI">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                    <navigationItem key="navigationItem" id="ERN-W9-e5a"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pse-2Y-TZ3">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="xuN-tb-lcy"/>
+                        <segue destination="fBg-Mc-Nuz" kind="relationship" relationship="viewControllers" id="vkG-I5-Dlz"/>
+                        <segue destination="kyq-P6-GMy" kind="relationship" relationship="viewControllers" id="Aqn-6g-134"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bXd-ku-wHq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </tabBarController>
             </objects>
-            <point key="canvasLocation" x="1381.5384615384614" y="123.69668246445497"/>
+            <point key="canvasLocation" x="2589.2307692307691" y="861.61137440758284"/>
+        </scene>
+        <!--My View Controller-->
+        <scene sceneID="5d0-pn-Oxx">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="kyq-P6-GMy" customClass="MyViewController" customModule="SmartLock_Udemy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vuM-KI-k7h">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQx-s2-jib">
+                                <rect key="frame" x="124" y="524" width="142" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="ログアウト">
+                                    <color key="titleColor" red="0.22910805078458268" green="0.38351819243816826" blue="0.61730647208121825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutBtn:" destination="kyq-P6-GMy" eventType="touchUpInside" id="ecR-En-XxI"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="6Sd-NR-gLo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="E2M-cF-7fY"/>
+                        <color key="backgroundColor" red="0.22910805078458268" green="0.38351819243816826" blue="0.61730647208121825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="person.fill" catalog="system" id="UAN-cU-JCd"/>
+                    <connections>
+                        <outlet property="logoutBtn" destination="fQx-s2-jib" id="v3J-dE-YwR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FGB-Ty-0QM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3450.7692307692305" y="881.51658767772506"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="U1c-d8-laQ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Heidi" width="3024" height="4032"/>
+        <image name="google-login-button" width="877" height="150"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="icon" width="960" height="883"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
