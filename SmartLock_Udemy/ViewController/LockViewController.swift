@@ -6,7 +6,9 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseDatabase
+import FirebaseFirestore
+import SwiftyJSON
 
 class LockViewController: UIViewController {
 
@@ -15,9 +17,12 @@ class LockViewController: UIViewController {
     let darkBlue = UIColor(red: 68, green: 111, blue: 128, alpha: 1.0)
     //その時の鍵の状態得る必要があるくない？
     var lockFlag = false
+    var defaultStore : Firestore!
 
-    var ref: DatabaseReference!
-    ref = Database.database().reference()
+    var ref:DatabaseReference!
+    let db = Firestore.firestore()
+    var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +32,27 @@ class LockViewController: UIViewController {
         //navigationController?.setNavigationBarHidden(false, animated: true)
         print("LockViewに入りました")
         
-        var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
+    
         var name = appDelegate.name
         nameLab.text = "こんにちは\n"+name+"さん"
         
+        defaultStore = Firestore.firestore()
+//        let ref_key = defaultStore.collection("key")
+//        ref_key.document("state").setData(["state": false])
+        
+        let ref1 = defaultStore.collection("key").document("state")
+        ref1.getDocument{ (document, error) in
+            if let document = document {
+                let state = document.data()?["state"] as! Bool
+                self.lockFlag = state
+                print(state)
+            }else{
+                print("Document does not exist")
+            }
+        }
+
+        
+
 //        //スワイプで前の画面に戻る　できない
 //        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         
@@ -52,10 +74,48 @@ class LockViewController: UIViewController {
         
     }
 
+        
     @IBAction func dbBtn(_ sender: Any) {
-        ref
-            .child("residence/01")
-            .setValue(["name": "ジュン", "gender": "男", "type": "リス"])
+        defaultStore = Firestore.firestore()
+        
+        //TimeStampを取得
+        let dt = Date()
+        let dateFormatter = DateFormatter()
+        // DateFormatter を使用して書式とロケールを指定する
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHms", options: 0, locale: Locale(identifier: "ja_JP"))
+        print(dateFormatter.string(from: dt))
+        var name = appDelegate.name
+        var operate = ""
+        var status = false //部屋にいるか（true: いる，false: いない）
+        if self.lockFlag == true{//鍵がかかっており，開けた
+            operate = "in"
+            status = true
+        }else{
+            operate = "out"
+            status = false
+        }
+        let ref_key = defaultStore.collection("key")
+        ref_key.document("state").setData(["state": false])
+        let ref_members = defaultStore.collection("members")
+        ref_members.document(name).setData(["name": name, "total-time": 245, "status": true])
+        let ref_access = defaultStore.collection("access")
+        ref_access.document(dateFormatter.string(from: dt)).setData(["time": dateFormatter.string(from: dt), "name": name, "operate": operate])
+        
+//        let ref = Database.database().reference()
+//        ref.child("members").childByAutoId().setValue(["name": name, "total-time": 42])
+
+//        let ref = defaultStore.collection("kc214")
+//        ref.document("members").setData(["name": name, "total-time": 42])
+
+//        db.collection("key").doc().set({
+//            state: false
+//        })
+//        .then(function() {
+//            console.log("Document successfully written!");
+//        })
+//        .catch(function(error) {
+//            console.error("Error writing document: ", error);
+//        });
         
     }
     @IBAction func lockBtn(_ sender: Any) {
@@ -63,12 +123,33 @@ class LockViewController: UIViewController {
         if UIApplication.shared.canOpenURL(url! as URL){
             //UIApplication.shared.openURL(url! as URL)
         }
+        //TimeStampを取得
+        let dt = Date()
+        let dateFormatter = DateFormatter()
+        
+        var name = appDelegate.name
+        // DateFormatter を使用して書式とロケールを指定する
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHms", options: 0, locale: Locale(identifier: "ja_JP"))
+        print(dateFormatter.string(from: dt))
+        
         if (lockFlag==true){//開錠をする
             btnLock.setTitle("Lock", for: .normal)
             lockFlag = false
+            let ref_key = defaultStore.collection("key")
+            ref_key.document("state").setData(["state": false])
+            let ref_access = defaultStore.collection("access")
+            ref_access.document(dateFormatter.string(from: dt)).setData(["time": dateFormatter.string(from: dt), "name": name, "operate": "open"])
+            let ref_members = defaultStore.collection("members")
+            ref_members.document(name).setData(["name": name, "total-time": 245, "status": true])
         }else{
             btnLock.setTitle("unLock", for: .normal)
             lockFlag = true
+            let ref_key = defaultStore.collection("key")
+            ref_key.document("state").setData(["state": true])
+            let ref_access = defaultStore.collection("access")
+            ref_access.document(dateFormatter.string(from: dt)).setData(["time": dateFormatter.string(from: dt), "name": name, "operate": "close"])
+            let ref_members = defaultStore.collection("members")
+            ref_members.document(name).setData(["name": name, "total-time": 245, "status": false])
         }
         
     }

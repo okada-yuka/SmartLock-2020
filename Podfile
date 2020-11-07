@@ -10,4 +10,6 @@ target 'SmartLock_Udemy' do
   pod 'Firebase/Auth'
   pod 'GoogleSignIn'
   pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
+  pod 'SwiftyJSON'
 end
