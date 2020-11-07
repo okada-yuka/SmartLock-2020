@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LockViewController: UIViewController {
 
@@ -15,6 +16,8 @@ class LockViewController: UIViewController {
     //その時の鍵の状態得る必要があるくない？
     var lockFlag = false
 
+    var ref: DatabaseReference!
+    ref = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +52,12 @@ class LockViewController: UIViewController {
         
     }
 
+    @IBAction func dbBtn(_ sender: Any) {
+        ref
+            .child("residence/01")
+            .setValue(["name": "ジュン", "gender": "男", "type": "リス"])
+        
+    }
     @IBAction func lockBtn(_ sender: Any) {
         let url = NSURL(string: "https://y2fajblsjk.execute-api.ap-northeast-1.amazonaws.com/api/")
         if UIApplication.shared.canOpenURL(url! as URL){
@@ -61,6 +70,7 @@ class LockViewController: UIViewController {
             btnLock.setTitle("unLock", for: .normal)
             lockFlag = true
         }
+        
     }
     
     func setTabBarItem(index: Int, titile: String, image: UIImage, selectedImage: UIImage,  offColor: UIColor, onColor: UIColor) -> Void {
