@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     let count = 0
     var id = ""
     var email = ""
-    var photoURL = ""
     var name = ""
     
     var window: UIWindow?
@@ -81,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 self.id = user.uid
                 self.name = user.displayName ?? "[DispayName]"
                 self.email = user.email ?? "[EMail]"
-        //                self.photoURL = user.photoURL
+                //self.photoURL = user.photoURL
                 var multiFactorString = "MultiFactor: "
                 for info in user.multiFactor.enrolledFactors {
                     multiFactorString += info.displayName ?? "[DispayName]"

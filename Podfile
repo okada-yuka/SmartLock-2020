@@ -12,4 +12,7 @@ target 'SmartLock_Udemy' do
   pod 'Firebase/Database'
   pod 'Firebase/Firestore'
   pod 'SwiftyJSON'
+  pod 'Firebase/Storage'
+  pod 'SDWebImage'
+  pod 'FirebaseUI/Storage'
 end

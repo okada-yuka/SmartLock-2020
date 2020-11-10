@@ -113,7 +113,7 @@ class HomeViewController: UIViewController{
         
         loginFlag = true
         //場所変えたい
-        var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//        var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
 //            let image = UIImage(named: "logout")
 //            self.loginBtn.setImage(image, for: .normal)
         //loginBtn.setTitle("ログアウト", for: .normal)
