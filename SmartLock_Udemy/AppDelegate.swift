@@ -18,8 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var email = ""
     var name = ""
     
-    var window: UIWindow?
-    
     //mainVCに画面遷移するため　方法2
 //    var CurrentVC = UIApplication.shared.keyWindow?.rootViewController
 

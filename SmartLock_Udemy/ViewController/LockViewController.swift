@@ -22,23 +22,19 @@ class LockViewController: UIViewController {
     var ref:DatabaseReference!
     let db = Firestore.firestore()
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
-    
-    
+    var name = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tabBarController?.tabBar.isHidden = false
-        //self.navigationController?.navigationBar.isHidden = false
-        //navigationController?.setNavigationBarHidden(false, animated: true)
         print("LockViewに入りました")
         
     
-        var name = appDelegate.name
+        name = appDelegate.name
         nameLab.text = "こんにちは\n"+name+"さん"
         
         defaultStore = Firestore.firestore()
-//        let ref_key = defaultStore.collection("key")
-//        ref_key.document("state").setData(["state": false])
+
         
         let ref1 = defaultStore.collection("key").document("state")
         ref1.getDocument{ (document, error) in
@@ -84,7 +80,7 @@ class LockViewController: UIViewController {
         // DateFormatter を使用して書式とロケールを指定する
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHms", options: 0, locale: Locale(identifier: "ja_JP"))
         print(dateFormatter.string(from: dt))
-        var name = appDelegate.name
+        
         var operate = ""
         var status = false //部屋にいるか（true: いる，false: いない）
         if self.lockFlag == true{//鍵がかかっており，開けた
@@ -99,23 +95,8 @@ class LockViewController: UIViewController {
         let ref_members = defaultStore.collection("members")
         ref_members.document(name).setData(["name": name, "total-time": 245, "status": true])
         let ref_access = defaultStore.collection("access")
-        ref_access.document(dateFormatter.string(from: dt)).setData(["time": dateFormatter.string(from: dt), "name": name, "operate": operate])
-        
-//        let ref = Database.database().reference()
-//        ref.child("members").childByAutoId().setValue(["name": name, "total-time": 42])
+        ref_access.document(dateFormatter.string(from: dt)).setData(["time": dateFormatter.string(from: dt), "name": self.name, "operate": operate])
 
-//        let ref = defaultStore.collection("kc214")
-//        ref.document("members").setData(["name": name, "total-time": 42])
-
-//        db.collection("key").doc().set({
-//            state: false
-//        })
-//        .then(function() {
-//            console.log("Document successfully written!");
-//        })
-//        .catch(function(error) {
-//            console.error("Error writing document: ", error);
-//        });
         
     }
     @IBAction func lockBtn(_ sender: Any) {
@@ -127,7 +108,7 @@ class LockViewController: UIViewController {
         let dt = Date()
         let dateFormatter = DateFormatter()
         
-        var name = appDelegate.name
+        
         // DateFormatter を使用して書式とロケールを指定する
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHms", options: 0, locale: Locale(identifier: "ja_JP"))
         print(dateFormatter.string(from: dt))
@@ -136,20 +117,26 @@ class LockViewController: UIViewController {
             btnLock.setTitle("Lock", for: .normal)
             lockFlag = false
             let ref_key = defaultStore.collection("key")
-            ref_key.document("state").setData(["state": false])
+            ref_key.document("state").updateData(["state": false])
+            print("key後　true")
             let ref_access = defaultStore.collection("access")
             ref_access.document(dateFormatter.string(from: dt)).setData(["time": dateFormatter.string(from: dt), "name": name, "operate": "open"])
+            print("access後　true")
             let ref_members = defaultStore.collection("members")
-            ref_members.document(name).setData(["name": name, "total-time": 245, "status": true])
+            print(name)
+            ref_members.document(name).updateData(["status": true])
         }else{
             btnLock.setTitle("unLock", for: .normal)
             lockFlag = true
             let ref_key = defaultStore.collection("key")
             ref_key.document("state").setData(["state": true])
+            print("key後")
             let ref_access = defaultStore.collection("access")
             ref_access.document(dateFormatter.string(from: dt)).setData(["time": dateFormatter.string(from: dt), "name": name, "operate": "close"])
+            print("access後")
             let ref_members = defaultStore.collection("members")
-            ref_members.document(name).setData(["name": name, "total-time": 245, "status": false])
+            print(name)
+            ref_members.document(name).updateData(["status": false])
         }
         
     }

@@ -45,10 +45,7 @@ class HomeViewController: UIViewController{
             loginFlag = false
         }else{
             print("ログイン済みです")
-//            let image = UIImage(named: "logout")
-//            self.loginBtn.setImage(image, for: .normal)
-            //loginBtn.setTitle("ログアウト", for: .normal)
-            //KeyViewに遷移する
+
         }
 
     }
@@ -65,10 +62,7 @@ class HomeViewController: UIViewController{
             //performSegue(withIdentifier: "login", sender: nil)
                     
         }
-
-
-        
-        
+  
     }
 
     func movingIndicator() {
@@ -81,16 +75,10 @@ class HomeViewController: UIViewController{
         indicator.isHidden = true
         indicator.stopAnimating()
     }
-    func gotoKey(){
-        print("gotoKeyが呼ばれた")
-        
-        let lockVC = self.storyboard?.instantiateViewController(withIdentifier: "lockVC") as! LockViewController
-        self.present(lockVC, animated: true, completion: nil)
-    }
     
     @IBAction func nextBtn(_ sender: Any) {
         //TabBarなのでlockVCではなく，TabViewControllerに遷移（storyboardで記述した）
-        //gotoKey()
+
     }
     
     @IBAction func loginBtn(_ sender: Any) {
@@ -112,21 +100,7 @@ class HomeViewController: UIViewController{
         Timer.scheduledTimer(timeInterval: 7, target: self, selector: #selector(HomeViewController.stopIndicator), userInfo: nil, repeats: false)
         
         loginFlag = true
-        //場所変えたい
-//        var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
-//            let image = UIImage(named: "logout")
-//            self.loginBtn.setImage(image, for: .normal)
-        //loginBtn.setTitle("ログアウト", for: .normal)
-        //self.loginBtn.setTitleColor(UIColor.red, for: .normal)
-        //名前とアイコンを表示してKeyViewに遷移する
-        //nameLab.text = appDelegate.name
-
-            
-        
-
-        
-
-        
+  
     }
 
 }

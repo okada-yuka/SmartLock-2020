@@ -22,42 +22,63 @@ class RoomViewController: UIViewController {
     @IBOutlet weak var recordLab: UILabel!
     @IBOutlet weak var icon1: UIImageView!
     @IBOutlet weak var icon2: UIImageView!
-    @IBOutlet weak var icon6: WKWebView!
+    @IBOutlet weak var icon3: UIImageView!
+    @IBOutlet weak var icon4: UIImageView!
+    @IBOutlet weak var icon5: UIImageView!
+    @IBOutlet weak var icon6: UIImageView!
+    @IBOutlet weak var icon7: UIImageView!
     
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+    var iconArray: [UIImageView] = []
+    var username = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        username = appDelegate.name
+        
+        //キャッシュを消す
+        SDImageCache.shared.clearMemory()
+        SDImageCache.shared.clearDisk()
+    }
+
+    
+    // 完全に全ての読み込みが完了時に実行
+    override func viewDidAppear(_ animated: Bool) {
+        print("再度Roomに来た時に呼び出されるはず")
+
+        //キャッシュを消す
+        SDImageCache.shared.clearMemory()
+        SDImageCache.shared.clearDisk()
+        
+        iconArray = [icon1, icon2, icon3, icon4, icon5, icon6, icon7]
         
         defaultStore = Firestore.firestore()
-//        let ref_key = defaultStore.collection("key")
-//        ref_key.document("state").setData(["state": false])
-        
-        let ref1 = defaultStore.collection("members").document(appDelegate.name)
-        ref1.getDocument{ [self] (document, error) in
-            if let document = document {
-                let status = document.data()?["status"] as! Bool
-                print("RoomViewにてStatus")
-                print(status)
-                
-                if status == true{
-                    //StorageのURLを参照
-                    let storageref = Storage.storage().reference(forURL: "gs://smartlock-kc214.appspot.com").child("profile").child("\(appDelegate.name).jpg")
-                    //画像をセット
-                    self.icon1.sd_setImage(with: storageref)
+        //在室状況により表示を変える（場所を変えないと最初の読み込み時にしか反映されない）
+        defaultStore.collection("members").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                        if document.data()["status"]as! Bool == true{
+                            self.iconArray[document.data()["iconNo"]as! Int - 1].isHidden = false
+                            //StorageのURLを参照
+//                            let storageref = Storage.storage().reference(forURL: "gs://smartlock-kc214.appspot.com/images/test SL.jpg")
+                            let storageref = Storage.storage().reference(forURL: "gs://smartlock-kc214.appspot.com/images/\(document.data()["name"]as! String).jpg")
+                            print(document.data()["name"]as! String)
+                            print(storageref)
+                            //画像をセット
+                            self.iconArray[document.data()["iconNo"]as! Int - 1].sd_setImage(with: storageref)
+                        }else{
+                            print("オフラインなので表示しません")
+                            self.iconArray[document.data()["iconNo"]as! Int - 1].isHidden = true
+                        }
+                    }
                 }
-                
-            }else{
-                print("Document does not exist")
-            }
         }
-
+            
         
-        if let url = URL(string: "https://lh3.googleusercontent.com/-2omX_pajzi0/AAAAAAAAAAI/AAAAAAAAA7A/AMZuucnQxzy-IcYqKiJf85XYVPiT4VsNcg/s96-c/photo.jpg") {  // URL文字列の表記間違いなどで、URL()がnilになる場合があるため、nilにならない場合のみ以下のload()が実行されるようにしている
-            self.icon6.load(URLRequest(url: url))
-        }
     }
-    
     
     @IBAction func reloadBtn(_ sender: Any) {
         defaultStore = Firestore.firestore()
@@ -74,16 +95,7 @@ class RoomViewController: UIViewController {
             self.recordLab.text = members
         }
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     func setTabBarItem(index: Int, titile: String, image: UIImage, selectedImage: UIImage,  offColor: UIColor, onColor: UIColor) -> Void {
         let tabBarItem = self.tabBarController?.tabBar.items![index]
         tabBarItem!.title = titile
