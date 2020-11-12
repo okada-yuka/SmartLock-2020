@@ -26,14 +26,14 @@ class MyViewController: UIViewController, UIImagePickerControllerDelegate & UINa
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     let imagePicker = UIImagePickerController()
     var select_flag = false
-    var username = ""
+    var name = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        nameLab.text = appDelegate.name
-        username = appDelegate.name
-        let storageref = Storage.storage().reference(forURL: "gs://smartlock-kc214.appspot.com/images/\(self.username).jpg")
-        print(storageref)
+        self.name = appDelegate.name
+        nameLab.text = name
+        let storageref = Storage.storage().reference(forURL: "gs://smartlock-kc214.appspot.com/images/\(name).jpg")
         //画像をセット
         self.profileView.sd_setImage(with: storageref)
     }
@@ -61,9 +61,7 @@ class MyViewController: UIViewController, UIImagePickerControllerDelegate & UINa
     }
     
     fileprivate func upload() {
-
-        print(appDelegate.name)
-        let storageRef = Storage.storage().reference(forURL: "gs://smartlock-kc214.appspot.com/images/\(self.username).jpg")
+        let storageRef = Storage.storage().reference(forURL: "gs://smartlock-kc214.appspot.com/images/\(self.name).jpg")
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         if let uploadData = self.imageView.image?.jpegData(compressionQuality: 0.9) {
@@ -72,10 +70,6 @@ class MyViewController: UIViewController, UIImagePickerControllerDelegate & UINa
                     print("error: \(error?.localizedDescription)")
                 }
                 storageRef.downloadURL(completion: { (url, error) in
-                    if error != nil {
-                        print("error: \(error?.localizedDescription)")
-                    }
-                    print("url: \(url?.absoluteString)")
                 })
             }
         }
@@ -85,7 +79,6 @@ class MyViewController: UIViewController, UIImagePickerControllerDelegate & UINa
     
     
     @IBAction func logoutBtn(_ sender: Any) {
-        print("ログアウトします")
         //ログイン済みの場合
         let firebaseAuth = Auth.auth()
         do {
@@ -93,15 +86,12 @@ class MyViewController: UIViewController, UIImagePickerControllerDelegate & UINa
         } catch let signOutError as NSError {
           print ("Error signing out: %@", signOutError)
         }
-        
-        print("ログインしてください")
-        
+
         HomeViewController().loginFlag = false
         appDelegate.name = ""
         appDelegate.email = ""
         appDelegate.id = ""
         //appDelegate.photoURL = ""
-        print("name:"+appDelegate.name)
     }
     
 }

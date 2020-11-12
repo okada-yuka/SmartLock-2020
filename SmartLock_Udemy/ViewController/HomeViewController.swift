@@ -12,52 +12,49 @@ import FirebaseAuth
 
 class HomeViewController: UIViewController{
 
-    @IBOutlet weak var iconWebView: UIWebView!
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     var loginFlag = true
-    let d_blue = UIColor(red: 58, green: 98, blue: 157, alpha: 1.0)
-    let l_blue = UIColor(red: 101, green: 128, blue: 164, alpha: 1.0)
+    let blue = #colorLiteral(red: 0.4274509804, green: 0.5215686275, blue: 0.6784313725, alpha: 1)
+    let pink = #colorLiteral(red: 0.7803921569, green: 0.6117647059, blue: 0.6117647059, alpha: 1)
+    let gray = #colorLiteral(red: 0.2705882353, green: 0.2705882353, blue: 0.2705882353, alpha: 1)
+
+    var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
-        
-        //押せないようにする（色を薄くしておく）
-        //nextBtn.backgroundColor = l_blue
+
         nextBtn.isEnabled = false
+        nextBtn.layer.cornerRadius = 4.0
         
         let image = UIImage(named: "gLogin")
         self.loginBtn.setImage(image, for: .normal)
         
         indicator.isHidden = true
+
+        nextBtn.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 0.4299550514)
+        //ボタンのborderを指定（なぜか反映されない）
+        nextBtn.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         //appDelegate.idは空だけどAuth.auth().currentUser?.uidは前のが残っている
         //ログアウト実装時にどうするか検討
-        if appDelegate.id == ""{
-            print("ログインしてください")
+        if loginCheck() == false{
             let image = UIImage(named: "gLogin")
             self.loginBtn.setImage(image, for: .normal)
             //loginBtn.setTitle("ログイン", for: .normal)
             loginFlag = false
-        }else{
-            print("ログイン済みです")
-
         }
 
     }
     
-    func loginCheck() {
+    func loginCheck() -> Bool{
         print("loginCheck")
-        //グローバルにしたら良さそう
-        var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate //AppDelegateのインスタンスを取得
         if appDelegate.id == ""{
-            print("ログインできてへん")
+            return false
         }else{
-            print("ログインでけた")
+            return true
             //これで画面遷移できるはずができない．．とりあえずボタンでの遷移
             //performSegue(withIdentifier: "login", sender: nil)
                     
@@ -78,7 +75,6 @@ class HomeViewController: UIViewController{
     
     @IBAction func nextBtn(_ sender: Any) {
         //TabBarなのでlockVCではなく，TabViewControllerに遷移（storyboardで記述した）
-
     }
     
     @IBAction func loginBtn(_ sender: Any) {
@@ -89,7 +85,10 @@ class HomeViewController: UIViewController{
         
         //押せるようにする
         nextBtn.isEnabled = true
-        nextBtn.backgroundColor = #colorLiteral(red: 0.2291080508, green: 0.3835181924, blue: 0.6173064721, alpha: 1)
+
+        nextBtn.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        //文字の色を指定
+        nextBtn.setTitleColor(#colorLiteral(red: 0.4274509804, green: 0.5215686275, blue: 0.6784313725, alpha: 1), for: .normal)
 
         let firebaseAuth = Auth.auth()
         //Googleのログインメニューを表示する

@@ -20,18 +20,12 @@
                                 <rect key="frame" x="46" y="135" width="299" height="192"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RJI-EC-ZQd">
-                                <rect key="frame" x="120" y="345" width="39" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVF-d3-iR4">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVF-d3-iR4" customClass="nextBtn">
                                 <rect key="frame" x="64" y="655" width="263" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.22910805079999999" green="0.38351819240000001" blue="0.6173064721" alpha="0.73581977739726023" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <state key="normal" title="はじめる">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" red="0.42745098040000001" green="0.52156862749999999" blue="0.67843137249999996" alpha="0.62847816780821919" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="nextBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ElX-t1-z7C"/>
@@ -53,22 +47,21 @@
                                 <rect key="frame" x="0.0" y="358" width="390" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                <color key="textColor" red="0.22910805079999999" green="0.38351819240000001" blue="0.6173064721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="vqY-zC-Mmo">
                                 <rect key="frame" x="172" y="462" width="47" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.42745098040000001" green="0.52156862749999999" blue="0.67843137249999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="Wbd-GH-xbM"/>
                     <navigationItem key="navigationItem" title="Dash Island" id="SdG-pM-hab"/>
                     <connections>
-                        <outlet property="iconWebView" destination="RJI-EC-ZQd" id="679-Eb-4Ii"/>
                         <outlet property="indicator" destination="vqY-zC-Mmo" id="pmY-xe-dSO"/>
                         <outlet property="loginBtn" destination="Pv6-Qb-P6C" id="Vzg-Ep-0gu"/>
                         <outlet property="nextBtn" destination="PVF-d3-iR4" id="roT-lf-4iv"/>
@@ -104,42 +97,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lSl-W0-zKj">
-                                <rect key="frame" x="43" y="85" width="217" height="67"/>
+                                <rect key="frame" x="53" y="121" width="217" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">こんにちは
 **さん</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" red="0.27058823529411763" green="0.27058823529411763" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvb-lD-dme">
-                                <rect key="frame" x="133" y="312" width="124" height="116"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvb-lD-dme">
+                                <rect key="frame" x="53" y="247" width="129" height="123"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="Lock">
+                                <state key="normal" image="lock">
                                     <color key="titleColor" red="0.22910805078458268" green="0.38351819243816826" blue="0.61730647208121825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="lockBtn:" destination="fBg-Mc-Nuz" eventType="touchUpInside" id="U3t-ti-T0p"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAB-FJ-OM9">
-                                <rect key="frame" x="108" y="548" width="174" height="99"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ShF-4a-FKX">
+                                <rect key="frame" x="208" y="247" width="130" height="123"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="DB"/>
+                                <state key="normal" title="Button" image="exit"/>
                                 <connections>
-                                    <action selector="dbBtn:" destination="fBg-Mc-Nuz" eventType="touchUpInside" id="K95-ES-xGe"/>
+                                    <action selector="exitBtn:" destination="fBg-Mc-Nuz" eventType="touchUpInside" id="xii-oP-tY4"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="key-state" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sz-hQ-mnZ">
+                                <rect key="frame" x="95" y="206" width="200" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fBe-5Z-t3y"/>
-                        <color key="backgroundColor" red="0.22910805078458268" green="0.38351819243816826" blue="0.61730647208121825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="key.icloud.fill" catalog="system" id="6ib-wh-8Yv"/>
                     <connections>
-                        <outlet property="btnLock" destination="yvb-lD-dme" id="Nrh-ce-C6a"/>
+                        <outlet property="exitBtn" destination="ShF-4a-FKX" id="BAa-CX-ChT"/>
+                        <outlet property="keyState" destination="0Sz-hQ-mnZ" id="gU3-rk-IO9"/>
+                        <outlet property="lockBtn" destination="yvb-lD-dme" id="Pts-G3-pHe"/>
                         <outlet property="nameLab" destination="lSl-W0-zKj" id="9o5-hF-4hF"/>
                     </connections>
                 </viewController>
@@ -248,8 +248,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="fBg-Mc-Nuz" kind="relationship" relationship="viewControllers" id="vkG-I5-Dlz"/>
                         <segue destination="DcQ-py-z0i" kind="relationship" relationship="viewControllers" id="zpK-uj-ful"/>
+                        <segue destination="fBg-Mc-Nuz" kind="relationship" relationship="viewControllers" id="vkG-I5-Dlz"/>
                         <segue destination="kyq-P6-GMy" kind="relationship" relationship="viewControllers" id="Aqn-6g-134"/>
                     </connections>
                 </tabBarController>
@@ -439,11 +439,13 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Heidi" width="3024" height="4032"/>
+        <image name="exit" width="129" height="123"/>
         <image name="google-login-button" width="877" height="150"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="icon" width="960" height="883"/>
         <image name="kc214" width="1498" height="2912"/>
         <image name="key.icloud.fill" catalog="system" width="128" height="88"/>
+        <image name="lock" width="129" height="123"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
