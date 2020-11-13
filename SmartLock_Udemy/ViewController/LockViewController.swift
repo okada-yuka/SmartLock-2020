@@ -16,6 +16,7 @@ class LockViewController: UIViewController {
     @IBOutlet weak var lockBtn: UIButton!
     @IBOutlet weak var exitBtn: UIButton!
     @IBOutlet weak var keyState: UILabel!
+    @IBOutlet weak var recordView: UITextView! //入退室記録を表示する
     
     let darkBlue = UIColor(red: 68, green: 111, blue: 128, alpha: 1.0)
     var lockFlag = false//鍵がかかっている場合true
@@ -38,11 +39,11 @@ class LockViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
     
         name = appDelegate.name
-        nameLab.text = "こんにちは\n"+name+"さん"
+        nameLab.text = "こんにちは！\n"+name+"さん"
         
         defaultStore = Firestore.firestore()
 
-        
+
         let ref_state = defaultStore.collection("key").document("state")
         ref_state.getDocument{ (document, error) in
             if let document = document {
@@ -50,12 +51,8 @@ class LockViewController: UIViewController {
                 self.lockFlag = state
                 if self.lockFlag == true{
                     self.lockBtn.setImage(self.unLock, for: self.btn_state)
-                    self.exitBtn.setImage(self.enter, for: self.btn_state)
-                    self.inFlag = false
                 }else{
                     self.lockBtn.setImage(self.lock, for: self.btn_state)
-                    self.exitBtn.setImage(self.exit, for: self.btn_state)
-                    self.inFlag = true
                 }
             }else{
                 print("Document does not exist")
@@ -64,6 +61,21 @@ class LockViewController: UIViewController {
             //self.keyLabel()
         }
         
+        
+        let ref_status = defaultStore.collection("members").document(name)
+        ref_status.getDocument{ (document, error) in
+            if let document = document {
+                if document.data()?["status"] as! Bool == false{
+                    self.exitBtn.setImage(self.enter, for: self.btn_state)
+                    self.inFlag = false
+                }else{
+                    self.exitBtn.setImage(self.exit, for: self.btn_state)
+                    self.inFlag = true
+                }
+            }else{
+                print("Document does not exist")
+            }
+        }
         
     }
     
@@ -74,10 +86,9 @@ class LockViewController: UIViewController {
         // 境界線の透過
         //UITabBar.appearance().shadowImage = UIImage()
         // 画像と文字の選択時の色を指定（未選択字の色はデフォルトのまま）
-        UITabBar.appearance().tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        UITabBar.appearance().tintColor = #colorLiteral(red: 0.4274509804, green: 0.5215686275, blue: 0.6784313725, alpha: 1)
         // タブバーアイコン非選択時の色を変更（iOS 10で利用可能）
-        let lightGray = #colorLiteral(red: 0.5433310023, green: 0.5733264594, blue: 0.5487672979, alpha: 1)
-        UITabBar.appearance().unselectedItemTintColor = lightGray
+        UITabBar.appearance().unselectedItemTintColor = #colorLiteral(red: 0.6846914741, green: 0.6760138789, blue: 0.7126953319, alpha: 1)
     }
 
     
@@ -115,35 +126,6 @@ class LockViewController: UIViewController {
         
     }
     
-// keyStateは関数にしたかったけど，なぜかうまくデータをとって来れない
-//    func checkKey() -> Bool{
-//        defaultStore = Firestore.firestore()
-//        let ref_state = defaultStore.collection("key").document("state")
-//        ref_state.getDocument{ (document, error) in
-//            if let document = document {
-//                self.stateFlag = document.data()?["state"] as! Bool
-//            }
-//            print("incKey")
-//            print(self.stateFlag)
-//        }
-//        print("out ref")
-//        print(self.stateFlag)
-//        return self.stateFlag
-//    }
-//
-//    func keyLabel(){
-//        if checkKey() == false{ //なんでtrueとfalseが逆になっているのかはよくわからん
-////            print("lab-true")
-////            print(checkKey())
-////            print("鍵がかかっています")
-//            self.keyState.text = "鍵がかかっています"
-//        }else{
-////            print("lab-false")
-////            print(checkKey())
-////            print("開いてます")
-//            self.keyState.text = "開いています"
-//        }
-//    }
     
     @IBAction func lockBtn(_ sender: Any) {
         //鍵を動かすlambda関数を叩く
@@ -190,6 +172,36 @@ class LockViewController: UIViewController {
         tabBarItem!.setTitleTextAttributes([ .foregroundColor : offColor], for: .normal)
         tabBarItem!.setTitleTextAttributes([ .foregroundColor : onColor], for: .selected)
     }
+    
+    // keyStateは関数にしたかったけど，なぜかうまくデータをとって来れない
+    //    func checkKey() -> Bool{
+    //        defaultStore = Firestore.firestore()
+    //        let ref_state = defaultStore.collection("key").document("state")
+    //        ref_state.getDocument{ (document, error) in
+    //            if let document = document {
+    //                self.stateFlag = document.data()?["state"] as! Bool
+    //            }
+    //            print("incKey")
+    //            print(self.stateFlag)
+    //        }
+    //        print("out ref")
+    //        print(self.stateFlag)
+    //        return self.stateFlag
+    //    }
+    //
+    //    func keyLabel(){
+    //        if checkKey() == false{ //なんでtrueとfalseが逆になっているのかはよくわからん
+    ////            print("lab-true")
+    ////            print(checkKey())
+    ////            print("鍵がかかっています")
+    //            self.keyState.text = "鍵がかかっています"
+    //        }else{
+    ////            print("lab-false")
+    ////            print(checkKey())
+    ////            print("開いてます")
+    //            self.keyState.text = "開いています"
+    //        }
+    //    }
     
     //    @IBAction func dbBtn(_ sender: Any) {
     //        defaultStore = Firestore.firestore()

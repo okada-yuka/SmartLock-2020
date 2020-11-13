@@ -34,9 +34,9 @@ class HomeViewController: UIViewController{
         
         indicator.isHidden = true
 
-        nextBtn.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 0.4299550514)
         //ボタンのborderを指定（なぜか反映されない）
-        nextBtn.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        nextBtn.layer.borderColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 0.6234214469)
+        nextBtn.layer.borderWidth = 2.0
         
         //appDelegate.idは空だけどAuth.auth().currentUser?.uidは前のが残っている
         //ログアウト実装時にどうするか検討
@@ -85,10 +85,10 @@ class HomeViewController: UIViewController{
         
         //押せるようにする
         nextBtn.isEnabled = true
-
-        nextBtn.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        nextBtn.layer.borderColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        nextBtn.layer.borderWidth = 2.0
         //文字の色を指定
-        nextBtn.setTitleColor(#colorLiteral(red: 0.4274509804, green: 0.5215686275, blue: 0.6784313725, alpha: 1), for: .normal)
+        nextBtn.setTitleColor(#colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1), for: .normal)
 
         let firebaseAuth = Auth.auth()
         //Googleのログインメニューを表示する
