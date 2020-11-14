@@ -15,8 +15,11 @@ class LockViewController: UIViewController {
     @IBOutlet weak var nameLab: UILabel!
     @IBOutlet weak var lockBtn: UIButton!
     @IBOutlet weak var exitBtn: UIButton!
-    @IBOutlet weak var keyState: UILabel!
-    @IBOutlet weak var recordView: UITextView! //入退室記録を表示する
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var reloadBtn: UIButton!
+    @IBOutlet weak var exportBtn: UIButton!
+    
+    
     
     let darkBlue = UIColor(red: 68, green: 111, blue: 128, alpha: 1.0)
     var lockFlag = false//鍵がかかっている場合true
@@ -33,6 +36,7 @@ class LockViewController: UIViewController {
     let exit = UIImage(named: "exit")
     let btn_state = UIControl.State.normal
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,7 +47,9 @@ class LockViewController: UIViewController {
         
         defaultStore = Firestore.firestore()
 
-
+        reloadBtn.layer.cornerRadius = 4.0
+        exportBtn.layer.cornerRadius = 4.0
+        
         let ref_state = defaultStore.collection("key").document("state")
         ref_state.getDocument{ (document, error) in
             if let document = document {
@@ -57,7 +63,6 @@ class LockViewController: UIViewController {
             }else{
                 print("Document does not exist")
             }
-            
             //self.keyLabel()
         }
         
@@ -77,6 +82,32 @@ class LockViewController: UIViewController {
             }
         }
         
+        defaultStore.collection("access").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+
+                        let time = document.data()["time"] as! String
+                        let name = document.data()["name"] as! String
+                        let operate = document.data()["operate"] as! String
+                        self.textView.text = self.textView.text + time + "\n" + name + "が" + operate + "\n"
+                            
+                    }
+                }
+        }
+        // 編集機能を無効にする.
+        textView.isEditable = false
+        // 範囲選択を無効にする.
+        textView.isSelectable = false
+
+//        textView.layer.position = CGPoint(x: screenSize.width/2, y: screenSize.height/2)
+
+//        self.view.addSubview(textView)
+        
+        textView.layer.borderColor = #colorLiteral(red: 0.2705882353, green: 0.2705882353, blue: 0.2705882353, alpha: 1)
+        textView.layer.borderWidth = 2.0
+        textView.layer.cornerRadius = 4.0
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,8 +120,42 @@ class LockViewController: UIViewController {
         UITabBar.appearance().tintColor = #colorLiteral(red: 0.4274509804, green: 0.5215686275, blue: 0.6784313725, alpha: 1)
         // タブバーアイコン非選択時の色を変更（iOS 10で利用可能）
         UITabBar.appearance().unselectedItemTintColor = #colorLiteral(red: 0.6846914741, green: 0.6760138789, blue: 0.7126953319, alpha: 1)
+        
+//        recordLab.numberOfLines = 0
+//        recordLab.sizeToFit()
     }
 
+    @IBAction func reloadBtn(_ sender: Any) {
+//        let ref_status = defaultStore.collection("access").document()
+//        ref_status.getDocument{ (document, error) in
+//
+//            if let document = document {
+//                let name = document.data()?["name"] as! String
+//                let time = document.data()?["time"] as! String
+//                let operate = document.data()?["operate"] as! String
+//                self.textView.text = self.textView.text! + "\(time)\n\(name)さんが\(operate)\n"
+//            }else{
+//                print("Document does not exist")
+//            }
+//        }
+        
+        //在室状況により表示を変える（場所を変えないと最初の読み込み時にしか反映されない）
+        self.textView.text = ""
+        defaultStore.collection("access").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+
+                        let time = document.data()["time"] as! String
+                        let name = document.data()["name"] as! String
+                        let operate = document.data()["operate"] as! String
+                        self.textView.text = self.textView.text + time + "\n" + name + "が" + operate + "\n"
+                            
+                    }
+                }
+        }
+    }
     
     @IBAction func exitBtn(_ sender: Any) {
         //TimeStampを取得
@@ -149,6 +214,8 @@ class LockViewController: UIViewController {
             ref_access.document(dateFormatter.string(from: dt)).setData(["time": dateFormatter.string(from: dt), "name": name, "operate": "open"])
             let ref_members = defaultStore.collection("members")
             ref_members.document(name).updateData(["status": true])
+//            addRecord(time: dateFormatter.string(from: dt), name: name, operation: "解錠")
+//            textView.text = "\(dateFormatter.string(from: dt))\n\(name)さんが解錠\n" + textView.text!
         }else{
             lockBtn.setImage(unLock, for: btn_state)
             exitBtn.setImage(enter, for: btn_state)
@@ -159,10 +226,17 @@ class LockViewController: UIViewController {
             ref_access.document(dateFormatter.string(from: dt)).setData(["time": dateFormatter.string(from: dt), "name": name, "operate": "close"])
             let ref_members = defaultStore.collection("members")
             ref_members.document(name).updateData(["status": false])
+//            addRecord(time: dateFormatter.string(from: dt), name: name, operation: "施錠")
+//            textView.text = "\(dateFormatter.string(from: dt))\n\(name)さんが施錠\n" + textView.text!
         }
-        //keyLabel()
         
     }
+    
+    //ここから（改行がうまくできていない？）
+//    func addRecord(time: String, name: String, operation: String){
+//        recordLab.text = recordLab.text! + "\(time)\n\(name)さんが\(operation)\n"
+//        print(recordLab.text)
+//    }
     
     func setTabBarItem(index: Int, titile: String, image: UIImage, selectedImage: UIImage,  offColor: UIColor, onColor: UIColor) -> Void {
         let tabBarItem = self.tabBarController?.tabBar.items![index]

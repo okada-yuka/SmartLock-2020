@@ -104,7 +104,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvb-lD-dme">
-                                <rect key="frame" x="53" y="247" width="129" height="123"/>
+                                <rect key="frame" x="53" y="248" width="129" height="123"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="lock">
@@ -115,22 +115,44 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ShF-4a-FKX">
-                                <rect key="frame" x="208" y="247" width="130" height="123"/>
+                                <rect key="frame" x="208" y="248" width="130" height="123"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="exit"/>
                                 <connections>
                                     <action selector="exitBtn:" destination="fBg-Mc-Nuz" eventType="touchUpInside" id="xii-oP-tY4"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bNh-mC-iBs">
-                                <rect key="frame" x="53" y="402" width="285" height="302"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pyy-DE-DZx">
+                                <rect key="frame" x="53" y="416" width="285" height="238"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MjN-CH-oOz">
+                                <rect key="frame" x="278" y="416" width="60" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="square.and.arrow.up" catalog="system">
+                                    <color key="titleColor" red="0.59602457279999999" green="0.59611296650000001" blue="0.59600526089999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="reloadBtn:" destination="fBg-Mc-Nuz" eventType="touchUpInside" id="cbA-Do-CSy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7s-eE-uaM">
+                                <rect key="frame" x="53" y="662" width="285" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.27058823529999998" green="0.27058823529999998" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="arrow.2.circlepath" catalog="system">
+                                    <color key="titleColor" red="0.59602457279999999" green="0.59611296650000001" blue="0.59600526089999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="reloadBtn:" destination="fBg-Mc-Nuz" eventType="touchUpInside" id="cJG-HT-b3Z"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fBe-5Z-t3y"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -138,9 +160,11 @@
                     <tabBarItem key="tabBarItem" title="" image="key.icloud.fill" catalog="system" id="6ib-wh-8Yv"/>
                     <connections>
                         <outlet property="exitBtn" destination="ShF-4a-FKX" id="BAa-CX-ChT"/>
+                        <outlet property="exportBtn" destination="MjN-CH-oOz" id="r31-sE-z0f"/>
                         <outlet property="lockBtn" destination="yvb-lD-dme" id="Pts-G3-pHe"/>
                         <outlet property="nameLab" destination="lSl-W0-zKj" id="9o5-hF-4hF"/>
-                        <outlet property="recordView" destination="bNh-mC-iBs" id="MPw-ME-Wz1"/>
+                        <outlet property="reloadBtn" destination="x7s-eE-uaM" id="jr5-84-FyN"/>
+                        <outlet property="textView" destination="pyy-DE-DZx" id="gIe-QN-dqJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HX8-wZ-zPf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -576,6 +600,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Heidi" width="3024" height="4032"/>
+        <image name="arrow.2.circlepath" catalog="system" width="128" height="101"/>
         <image name="background_mypage" width="375" height="812"/>
         <image name="exit" width="129" height="123"/>
         <image name="google-login-button" width="877" height="150"/>
@@ -588,6 +613,7 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="photoBtn" width="111" height="111"/>
         <image name="rank_1" width="256" height="256"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
