@@ -30,8 +30,8 @@ class LockViewController: UIViewController {
     var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     var name = ""
     
-    let unLock = UIImage(named: "unlock")
-    let lock = UIImage(named: "lock")
+    let open = UIImage(named: "open")
+    let close = UIImage(named: "close")
     let enter = UIImage(named: "enter")
     let exit = UIImage(named: "exit")
     let btn_state = UIControl.State.normal
@@ -56,9 +56,9 @@ class LockViewController: UIViewController {
                 let state = document.data()?["state"] as! Bool
                 self.lockFlag = state
                 if self.lockFlag == true{
-                    self.lockBtn.setImage(self.unLock, for: self.btn_state)
+                    self.lockBtn.setImage(self.open, for: self.btn_state)
                 }else{
-                    self.lockBtn.setImage(self.lock, for: self.btn_state)
+                    self.lockBtn.setImage(self.close, for: self.btn_state)
                 }
             }else{
                 print("Document does not exist")
@@ -175,7 +175,7 @@ class LockViewController: UIViewController {
             if (lockFlag == true){//鍵がかかっている場合
                 let ref_key = defaultStore.collection("key")
                 ref_key.document("state").updateData(["state": false])
-                lockBtn.setImage(lock, for: btn_state)
+                lockBtn.setImage(close, for: btn_state)
                 let ref_access = defaultStore.collection("access")
                 ref_access.document(dateFormatter.string(from: dt)).setData(["time": dateFormatter.string(from: dt), "name": name, "operate": "open"])
             }else{
@@ -205,7 +205,7 @@ class LockViewController: UIViewController {
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHms", options: 0, locale: Locale(identifier: "ja_JP"))
         
         if (lockFlag==true){//開錠をする
-            lockBtn.setImage(lock, for: btn_state)
+            lockBtn.setImage(close, for: btn_state)
             exitBtn.setImage(exit, for: btn_state)
             lockFlag = false
             let ref_key = defaultStore.collection("key")
@@ -217,7 +217,7 @@ class LockViewController: UIViewController {
 //            addRecord(time: dateFormatter.string(from: dt), name: name, operation: "解錠")
 //            textView.text = "\(dateFormatter.string(from: dt))\n\(name)さんが解錠\n" + textView.text!
         }else{
-            lockBtn.setImage(unLock, for: btn_state)
+            lockBtn.setImage(open, for: btn_state)
             exitBtn.setImage(enter, for: btn_state)
             lockFlag = true
             let ref_key = defaultStore.collection("key")
